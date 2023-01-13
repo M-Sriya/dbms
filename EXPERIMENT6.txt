@@ -1,0 +1,114 @@
+
+mysql> use sse;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_sse |
++---------------+
+| employee      |
+| faculty       |
+| mentees       |
+| student       |
++---------------+
+4 rows in set (0.00 sec)
+
+mysql> alter table mentees add subject varchar(20);
+Query OK, 2 rows affected (0.03 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> update mentees set subject="PDSD" where name="maanya";
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set subjecct="physics" where name="tanvi";
+ERROR 1054 (42S22): Unknown column 'subjecct' in 'field list'
+mysql> update mentees set subject="physics" where name="tanvi";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select* from mentees;
++-------+--------+---------+-------+------------+---------+
+| regno | name   | address | marks | fathername | subject |
++-------+--------+---------+-------+------------+---------+
+|     2 | maanya | vizag   |    99 |       NULL | PDSD    |
+|     3 | tanvi  | bza     |    89 |       NULL | physics |
++-------+--------+---------+-------+------------+---------+
+2 rows in set (0.00 sec)
+
+mysql> update mentees set fathername="kantha" where name="maanya";
+ERROR 1366 (HY000): Incorrect integer value: 'kantha' for column 'fathername' at row 1
+mysql> update mentees set fathername=2 where name="maanya";
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set fathername=3 where name=
+    -> show tables;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'show tables' at line 2
+mysql> update mentees set fathername=3 where name="tanvi";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select* from mentees;
++-------+--------+---------+-------+------------+---------+
+| regno | name   | address | marks | fathername | subject |
++-------+--------+---------+-------+------------+---------+
+|     2 | maanya | vizag   |    99 |          2 | PDSD    |
+|     3 | tanvi  | bza     |    89 |          3 | physics |
++-------+--------+---------+-------+------------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select* from mentees where marks between 90 and 99;
++-------+--------+---------+-------+------------+---------+
+| regno | name   | address | marks | fathername | subject |
++-------+--------+---------+-------+------------+---------+
+|     2 | maanya | vizag   |    99 |          2 | PDSD    |
++-------+--------+---------+-------+------------+---------+
+1 row in set (0.00 sec)
+
+mysql> select* from mentees where subject in('PDSD');
++-------+--------+---------+-------+------------+---------+
+| regno | name   | address | marks | fathername | subject |
++-------+--------+---------+-------+------------+---------+
+|     2 | maanya | vizag   |    99 |          2 | PDSD    |
++-------+--------+---------+-------+------------+---------+
+1 row in set (0.00 sec)
+
+mysql> select* from mentees where marks not between 90 and 99;
++-------+-------+---------+-------+------------+---------+
+| regno | name  | address | marks | fathername | subject |
++-------+-------+---------+-------+------------+---------+
+|     3 | tanvi | bza     |    89 |          3 | physics |
++-------+-------+---------+-------+------------+---------+
+1 row in set (0.00 sec)
+
+mysql> select sum(marks) from mentees where fathername=2;
++------------+
+| sum(marks) |
++------------+
+|         99 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(marks) as average from mentees;
++---------+
+| average |
++---------+
+| 94.0000 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select min(marks) as minimum from mentees;
++---------+
+| minimum |
++---------+
+|      89 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select max(marks) as maximum from mentees;
++---------+
+| maximum |
++---------+
+|      99 |
++---------+
+1 row in set (0.00 sec)

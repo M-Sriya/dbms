@@ -1,0 +1,43 @@
+mysql> use sse;
+Database changed
+mysql> create table mentees(regno int(10),name varchar(20),address varchar(20));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into mentees values(1,"sriya","guntur");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into mentees values(2,"maanya","vizag");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into mentees values(3,"tanvi","bza");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select* from mentees;
++-------+--------+---------+
+| regno | name   | address |
++-------+--------+---------+
+|     1 | sriya  | guntur  |
+|     2 | maanya | vizag   |
+|     3 | tanvi  | bza     |
++-------+--------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select name from mentees;
++--------+
+| name   |
++--------+
+| sriya  |
+| maanya |
+| tanvi  |
++--------+
+3 rows in set (0.00 sec)
+
+mysql> select* from mentees where id=1;
+ERROR 1054 (42S22): Unknown column 'id' in 'where clause'
+mysql> select* from mentees where regno=1;
++-------+-------+---------+
+| regno | name  | address |
++-------+-------+---------+
+|     1 | sriya | guntur  |
++-------+-------+---------+
+1 row in set (0.04 sec)

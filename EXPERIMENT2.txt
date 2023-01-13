@@ -1,0 +1,120 @@
+mysql> use sse;
+Database changed
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> create table employee(id int(10),name varchar(20),dept varchar(20));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> create table student(id int(10),name varchar(20),age varchar(20));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_sse |
++---------------+
+| employee      |
+| student       |
++---------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into student values(1,"sriya",21);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values(2,"varshi",22);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into student values(3,"maanya",11);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select* from student;
++------+--------+------+
+| id   | name   | age  |
++------+--------+------+
+|    1 | sriya  | 21   |
+|    2 | varshi | 22   |
+|    3 | maanya | 11   |
++------+--------+------+
+3 rows in set (0.00 sec)
+
+mysql> insert into employee values(1,"tanvi","CSE");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into employee values(2,"sreshta",
+    -> show tables;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'show tables' at line 2
+mysql> insert into employee values(2,"sreshta","IT");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select* from employee;
++------+---------+------+
+| id   | name    | dept |
++------+---------+------+
+|    1 | tanvi   | CSE  |
+|    2 | sreshta | IT   |
++------+---------+------+
+2 rows in set (0.00 sec)
+
+mysql> alter table employee add primary key(id);
+Query OK, 2 rows affected (0.02 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> desc employee;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(10)     | NO   | PRI | 0       |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
+| dept  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
+
+mysql> alter table employee add unique key(name);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc employee;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(10)     | NO   | PRI | 0       |       |
+| name  | varchar(20) | YES  | UNI | NULL    |       |
+| dept  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table employee add foreign key(id) references employee(id);
+ERROR 1025 (HY000): Error on rename of '.\sse\#sql-1054_8' to '.\sse\employee' (errno: 150)
+mysql> alter table student add foreign key(id) references employee(id);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`sse`.`#sql-1054_8`, CONSTRAINT `#sql-1054_8_ibfk_1` FOREIGN KEY (`id`) REFERENCES `employee` (`id`))
+mysql> create table faculty(id int(10), name varchar(20),age int(14));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc faculty;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(10)     | YES  |     | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
+| age   | int(14)     | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> insert into faculty values(1,"sriya",12);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into faculty values(2,"maanya",30);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into faculty values(3,"tanvi",21);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select* from faculty;
++------+--------+------+
+| id   | name   | age  |
++------+--------+------+
+|    1 | sriya  |   12 |
+|    2 | maanya |   30 |
+|    3 | tanvi  |   21 |
++------+--------+------+
+3 rows in set (0.00 sec)

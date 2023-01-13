@@ -1,0 +1,40 @@
+
+mysql> use sse;
+Database changed
+mysql> select* from mentees;
++-------+--------+---------+
+| regno | name   | address |
++-------+--------+---------+
+|     1 | sriya  | guntur  |
+|     2 | maanya | vizag   |
+|     3 | tanvi  | bza     |
++-------+--------+---------+
+3 rows in set (0.00 sec)
+
+mysql> update mentees set where address="chennai" where name="sriya";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where address="chennai" where name="sriya"' at line 1
+mysql> update mentees set address="chennai" where name="sriya";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select* from mentees;
++-------+--------+---------+
+| regno | name   | address |
++-------+--------+---------+
+|     1 | sriya  | chennai |
+|     2 | maanya | vizag   |
+|     3 | tanvi  | bza     |
++-------+--------+---------+
+3 rows in set (0.00 sec)
+
+mysql> delete from mentees where address="chennai";
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select* from mentees;
++-------+--------+---------+
+| regno | name   | address |
++-------+--------+---------+
+|     2 | maanya | vizag   |
+|     3 | tanvi  | bza     |
++-------+--------+---------+
+2 rows in set (0.00 sec)

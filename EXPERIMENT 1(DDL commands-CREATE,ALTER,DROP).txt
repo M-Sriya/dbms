@@ -1,0 +1,96 @@
+
+mysql> use sriya;
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_sriya |
++-----------------+
+| employee        |
+| faculty         |
+| student         |
++-----------------+
+3 rows in set (0.00 sec)
+
+mysql> desc employee;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| empid      | int(10)     | YES  |     | NULL    |       |
+| empname    | varchar(20) | YES  |     | NULL    |       |
+| empage     | int(10)     | YES  |     | NULL    |       |
+| empaddress | varchar(25) | YES  |     | NULL    |       |
+| salary     | int(10)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+mysql> desc faculty;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| facid   | int(10)     | YES  |     | NULL    |       |
+| facname | varchar(20) | YES  |     | NULL    |       |
+| facdept | varchar(20) | YES  |     | NULL    |       |
+| facage  | int(10)     | YES  |     | NULL    |       |
+| salary  | int(10)     | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+mysql> desc student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| stuid    | int(10)     | YES  |     | NULL    |       |
+| stuname  | varchar(20) | YES  |     | NULL    |       |
+| stuage   | varchar(20) | YES  |     | NULL    |       |
+| stustate | varchar(10) | YES  |     | NULL    |       |
+| address  | varchar(15) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into employee values(1,"sriya",19,"guntur",100000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values(2,"maanya",20,"vizag",20000);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into employee values(3,"tanvi",20,"hyderabad",20000);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select*from employee;
++-------+---------+--------+------------+--------+
+| empid | empname | empage | empaddress | salary |
++-------+---------+--------+------------+--------+
+|     1 | sriya   |     19 | guntur     | 100000 |
+|     2 | maanya  |     20 | vizag      |  20000 |
+|     3 | tanvi   |     20 | hyderabad  |  20000 |
++-------+---------+--------+------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> alter table faculty add Address varchar(15);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc faculty;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| facid   | int(10)     | YES  |     | NULL    |       |
+| facname | varchar(20) | YES  |     | NULL    |       |
+| facdept | varchar(20) | YES  |     | NULL    |       |
+| facage  | int(10)     | YES  |     | NULL    |       |
+| salary  | int(10)     | YES  |     | NULL    |       |
+| Address | varchar(15) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> drop table faculty;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_sriya |
++-----------------+
+| employee        |
+| student         |
++-----------------+
+2 rows in set (0.00 sec)
